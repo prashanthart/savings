@@ -81,9 +81,11 @@ public class SavingsServiceImpl {
 				if(!banks.isEmpty()) {
 					return "Bank already exist";
 				}
+				newBank.setUserId(userId);
 				user.getBank().add(newBank);
 			}
-			addUser(user);
+			bankRepository.save(newBank);
+			savingsRepository.save(user);
 			return "New Bank added to the user : "+user.getName();
 		
 	}
