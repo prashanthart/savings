@@ -66,8 +66,12 @@ public class SavingsController {
 
 	
 	@DeleteMapping("/deleteUser/{userId}")
-	public String deleteUser(@PathVariable String userId) {
-		return savingsServiceImpl.deleteUser(userId);
+	public ResponseEntity<Map<String,String>> deleteUser(@PathVariable String userId) {
+		String responseString = savingsServiceImpl.deleteUser(userId);
+		Map<String,String> response = new HashMap<>();
+		response.put("message", responseString);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		
 		
 	}
 	
